@@ -9,8 +9,8 @@
     <!-- Fonts: Sora (headings) + Inter (body) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Sora:wght@600;800&display=swap" rel="stylesheet">
 
-    <!-- Icons -->
-    <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- GSAP (animations) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -73,16 +73,17 @@
             </h1>
             <p class="hero-sub">BCA Student • Aspiring Data Scientist building elegant ML & web products.</p>
             <div class="hero-ctas">
-                <button class="btn primary magnetic">View Projects</button>
-                <button class="btn ghost magnetic">Download Résumé</button>
+                <!-- made anchors so clicks work with smooth scrolling + download -->
+                <a href="#projects" class="btn primary magnetic">View Projects</a>
+                <a href="resume.pdf" download class="btn ghost magnetic">Download Résumé</a>
             </div>
         </div>
 
         <div class="hero-card glass">
             <img src="my_photo.jpg" alt="Rajesh photo" class="profile" />
             <div class="hero-meta">
-                <div><strong>Skills</strong><span>Python • JS • React • Flask</span></div>
-                <div><strong>Location</strong><span>India</span></div>
+                <div><strong>Skills</strong><span>html • JS • React • Flask</span></div>
+                <div><strong>Location</strong><span>Ohio</span></div>
             </div>
         </div>
     </header>
@@ -94,7 +95,7 @@
                 <h3>About Me</h3>
                 <p>I build data-driven web apps with polished UI. I love production ML, clean UI, and delightful UX.</p>
                 <ul class="skills">
-                    <li>Python</li>
+                    <li>html</li>
                     <li>JavaScript</li>
                     <li>React</li>
                     <li>Flask</li>
@@ -119,8 +120,9 @@
                 </div>
                 <p>Predict compostability with a modern UI and explainable ML.</p>
                 <div class="pc-footer">
-                    <a class="link" href="https://github.com/rajeshrajesh696908-wq/MyPortfolio" target="_blank">View repo</a>
-                    <button class="btn micro magnetic">Preview</button>
+                    <a class="link" href="https://github.com/Thulasinathan6/SmartCompostApp" target="_blank">View repo</a>
+                    <!-- data-href opens repo/preview in new tab via JS -->
+                    <button class="btn micro magnetic" data-href="https://github.com/Thulasinathan6/SmartCompostApp">Preview</button>
                 </div>
             </article>
 
@@ -132,7 +134,7 @@
                 <p>Custom blogging stack with markdown, auth, and deploy pipeline.</p>
                 <div class="pc-footer">
                     <a class="link" href="#" target="_blank">View</a>
-                    <button class="btn micro magnetic">Demo</button>
+                    <button class="btn micro magnetic" data-href="#">Demo</button>
                 </div>
             </article>
 
@@ -144,7 +146,7 @@
                 <p>Beautiful weather UI with geolocation & animated icons.</p>
                 <div class="pc-footer">
                     <a class="link" href="#" target="_blank">View</a>
-                    <button class="btn micro magnetic">Run</button>
+                    <button class="btn micro magnetic" data-href="#">Run</button>
                 </div>
             </article>
         </div>
@@ -155,23 +157,33 @@
         <div class="container contact-grid">
             <div class="glass contact-card">
                 <h3>Let's talk</h3>
-                <p>Reach me: <a href="mailto:dorianvexor@duck.com">dorianvexor@duck.com</a></p>
+                <p>Reach me: <a href="mailto:rajeshrajesh696908@gmail.com">dorianvexor@duck.com</a></p>
                 <div class="contact-icons">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/rajeshrajesh696908-wq/MyPortfolio/tree/main" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
-            <div class="glass contact-form">
-                <input type="text" placeholder="Your name" />
-                <input type="email" placeholder="Email" />
-                <textarea placeholder="Message"></textarea>
-                <button class="btn primary magnetic">Send</button>
-            </div>
+
+            <!-- contact form wired to open mail client (mailto) -->
+            <form id="contact-form" class="glass contact-form" novalidate>
+                <input name="name" type="text" placeholder="Your name" required />
+                <input name="email" type="email" placeholder="Email" required />
+                <textarea name="message" placeholder="Message" rows="5" required></textarea>
+                <button type="submit" class="btn primary magnetic">Send</button>
+            </form>
         </div>
     </section>
 
-    <footer class="footer">
-        <small>© 2025 Rajesh • Built with style</small>
+    <!-- FOOTER -->
+    <footer class="footer glass">
+        <div class="footer-inner">
+            <p>© 2025 Rajesh • Built with style</p>
+            <div class="footer-icons">
+                <a href="mailto:rajeshrajesh696908@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com/rajeshrajesh696908-wq/MyPortfolio/tree/main" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
     </footer>
 
     <!-- JS -->
