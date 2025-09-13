@@ -1,84 +1,181 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <!-- CSS -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Rajesh — Portfolio v3.0</title>
+
+    <!-- Fonts: Sora (headings) + Inter (body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Sora:wght@600;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+
+    <!-- GSAP (animations) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <!-- Navbar -->
-    <nav>
-        <h1>Portfolio</h1>
-        <ul>
+<body class="dark">
+
+    <!-- Dynamic Background Layers -->
+    <div id="bg-gradient" aria-hidden="true"></div>
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
+    <svg id="bg-blob" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <filter id="f1"><feGaussianBlur stdDeviation="40" result="blur"/></filter>
+    </defs>
+    <g filter="url(#f1)" fill="none">
+      <path id="blob-path" fill="url(#g1)"></path>
+    </g>
+    <defs>
+      <linearGradient id="g1" x1="0" x2="1">
+        <stop offset="0" stop-color="#06b6d4"/>
+        <stop offset="1" stop-color="#9333ea"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+    <!-- Cursor Glow -->
+    <div id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <div class="brand">
+            <span class="logo">RJ</span>
+            <div>
+                <h1>Rajesh</h1>
+                <small>Data Scientist • Web Engineer</small>
+            </div>
+        </div>
+        <ul class="nav-links">
             <li><a href="#hero">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+        <div class="nav-actions">
+            <button id="theme-toggle" aria-pressed="false" title="Toggle theme">☀️</button>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <h2>Hi, I'm <span>Your Rajesh</span> 👋</h2>
-        <img src="my_photo.jpg" alt="photo" class="circle-img">
-        <p>A BCA Student & Aspiring Data Scientist</p>
-        <a href="#projects"><button class="btn">View My Work</button></a>
+    <!-- HERO -->
+    <header id="hero" class="hero">
+        <div class="hero-inner">
+            <h2 class="eyebrow">Hi, I'm</h2>
+            <h1 class="hero-title">
+                <span class="big">Rajesh</span>
+                <span class="accent">— Data & Web</span>
+            </h1>
+            <p class="hero-sub">BCA Student • Aspiring Data Scientist building elegant ML & web products.</p>
+            <div class="hero-ctas">
+                <button class="btn primary magnetic">View Projects</button>
+                <button class="btn ghost magnetic">Download Résumé</button>
+            </div>
+        </div>
+
+        <div class="hero-card glass">
+            <img src="my_photo.jpg" alt="Rajesh photo" class="profile" />
+            <div class="hero-meta">
+                <div><strong>Skills</strong><span>Python • JS • React • Flask</span></div>
+                <div><strong>Location</strong><span>India</span></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+        <div class="container grid">
+            <div class="card glass tilt-card">
+                <h3>About Me</h3>
+                <p>I build data-driven web apps with polished UI. I love production ML, clean UI, and delightful UX.</p>
+                <ul class="skills">
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>React</li>
+                    <li>Flask</li>
+                </ul>
+            </div>
+
+            <div class="showcase glass tilt-card">
+                <h3>Philosophy</h3>
+                <p>Ship elegant experiences, prefer clarity over cleverness, build with modern tooling and care.</p>
+            </div>
+        </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I am a BCA student passionate about creating modern and responsive websites. I enjoy working with HTML, CSS, JavaScript, and frameworks like React. My goal is to build projects that solve real-world problems while looking visually appealing.</p>
-        <p><strong>Skills:</strong> HTML | CSS | JavaScript | React | Python | Flask | Git | GitHub</p>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>Projects</h2>
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+        <h2 class="section-title">Selected Projects</h2>
         <div class="projects-grid">
-            <div class="project-card">
-                <h3>Smart Compost App</h3>
-                <p>Web app that predicts whether waste is compostable or not using Machine Learning.</p>
-                <a href="https://github.com/rajeshrajesh696908-wq/MyPortfolio" target="_blank">View Project</a>
+            <article class="project-card glass tilt-card" data-category="ml">
+                <div class="pc-top">
+                    <h3>Smart Compost App</h3>
+                    <span class="tag">ML</span>
+                </div>
+                <p>Predict compostability with a modern UI and explainable ML.</p>
+                <div class="pc-footer">
+                    <a class="link" href="https://github.com/rajeshrajesh696908-wq/MyPortfolio" target="_blank">View repo</a>
+                    <button class="btn micro magnetic">Preview</button>
+                </div>
+            </article>
+
+            <article class="project-card glass tilt-card" data-category="web">
+                <div class="pc-top">
+                    <h3>Blog Platform</h3>
+                    <span class="tag">Web</span>
+                </div>
+                <p>Custom blogging stack with markdown, auth, and deploy pipeline.</p>
+                <div class="pc-footer">
+                    <a class="link" href="#" target="_blank">View</a>
+                    <button class="btn micro magnetic">Demo</button>
+                </div>
+            </article>
+
+            <article class="project-card glass tilt-card" data-category="web">
+                <div class="pc-top">
+                    <h3>Weather App</h3>
+                    <span class="tag">Web</span>
+                </div>
+                <p>Beautiful weather UI with geolocation & animated icons.</p>
+                <div class="pc-footer">
+                    <a class="link" href="#" target="_blank">View</a>
+                    <button class="btn micro magnetic">Run</button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+        <div class="container contact-grid">
+            <div class="glass contact-card">
+                <h3>Let's talk</h3>
+                <p>Reach me: <a href="mailto:dorianvexor@duck.com">dorianvexor@duck.com</a></p>
+                <div class="contact-icons">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
-            <div class="project-card">
-                <h3>Blog Platform</h3>
-                <p>A blogging system where users can post, edit, and comment on articles.</p>
-                <a href="https://github.com/your-username/blog-platform" target="_blank">View Project</a>
-            </div>
-            <div class="project-card">
-                <h3>Weather App</h3>
-                <p>Web app that shows live weather using API integration with styled UI.</p>
-                <a href="https://github.com/your-username/weather-app" target="_blank">View Project</a>
+            <div class="glass contact-form">
+                <input type="text" placeholder="Your name" />
+                <input type="email" placeholder="Email" />
+                <textarea placeholder="Message"></textarea>
+                <button class="btn primary magnetic">Send</button>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <div class="contact-links">
-            <a href="rajeshrajesh696908@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/rajeshrajesh696908-wq" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/your-linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 Your Name | Designed with 💙</p>
+    <footer class="footer">
+        <small>© 2025 Rajesh • Built with style</small>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    <!-- JS -->
+    <script src="script.js" defer></script>
 </body>
 
 </html>
